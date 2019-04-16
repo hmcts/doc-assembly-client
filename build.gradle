@@ -2,9 +2,6 @@ buildscript {
   repositories {
     jcenter()
   }
-  dependencies {
-    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3"
-  }
 }
 
 plugins {
@@ -19,7 +16,6 @@ apply plugin: 'java-library'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
 
 group 'uk.gov.hmcts.reform'
 version '1.0.0'
@@ -55,9 +51,6 @@ compileTestJava {
 }
 
 repositories {
-  maven {
-    url "https://dl.bintray.com/hmcts/hmcts-maven"
-  }
   maven {
     url 'https://repo.spring.io/libs-milestone'
   }
@@ -125,23 +118,6 @@ publishing {
         root.appendNode('url', 'https://github.com/hmcts/doc-assembly-client')
         root.children().last() + pomConfig
       }
-    }
-  }
-}
-
-bintray {
-  user = System.getenv('BINTRAY_USER')
-  key = System.getenv('BINTRAY_KEY')
-  publications = ['Main']
-  publish = true
-  pkg {
-    repo = 'hmcts-maven'
-    name = 'doc-assembly-client'
-    userOrg = 'hmcts'
-    licenses = ['MIT']
-    vcsUrl = 'https://github.com/hmcts/doc-assembly-client'
-    version {
-      name = project.version
     }
   }
 }
