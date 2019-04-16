@@ -22,7 +22,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group 'uk.gov.hmcts.reform'
-version '5.0.0'
+version '1.0.0'
 
 dependencyUpdates.resolutionStrategy = {
   componentSelection { rules ->
@@ -39,7 +39,7 @@ dependencyUpdates.resolutionStrategy = {
 
 checkstyle {
   maxWarnings = 0
-  toolVersion = '8.3'
+  toolVersion = '8.19'
   // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
   configDir = new File(rootDir, 'config/checkstyle')
 }
