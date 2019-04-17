@@ -139,7 +139,7 @@ bintray {
     name = 'doc-assebmly-client'
     userOrg = 'hmcts'
     licenses = ['MIT']
-    vcsUrl = 'https://github.com/hmcts/doc-assembly§-client'
+    vcsUrl = 'https://github.com/hmcts/doc-assembly-client'
     version {
       name = project.version
     }
