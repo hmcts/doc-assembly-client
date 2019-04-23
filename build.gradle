@@ -136,7 +136,7 @@ bintray {
   publish = true
   pkg {
     repo = 'hmcts-maven'
-    name = 'doc-assebmly-client'
+    name = 'doc-assembly-client'
     userOrg = 'hmcts'
     licenses = ['MIT']
     vcsUrl = 'https://github.com/hmcts/doc-assembly-client'
