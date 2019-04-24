@@ -10,8 +10,16 @@ import uk.gov.hmcts.reform.docassembly.domain.DocAssemblyRequest;
 import uk.gov.hmcts.reform.docassembly.domain.DocAssemblyResponse;
 import uk.gov.hmcts.reform.docassembly.healthcheck.InternalHealth;
 
+import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
+
 @FeignClient(name = "doc-assembly-api", url = "${doc_assembly.url}")
 public interface DocAssemblyApi {
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/health",
+        headers = CONTENT_TYPE + "=" + APPLICATION_JSON_UTF8_VALUE
+    )
     InternalHealth health();
 
     @RequestMapping(
