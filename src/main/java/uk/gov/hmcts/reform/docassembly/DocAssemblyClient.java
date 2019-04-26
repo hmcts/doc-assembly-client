@@ -3,12 +3,14 @@ package uk.gov.hmcts.reform.docassembly;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.docassembly.domain.DocAssemblyRequest;
 import uk.gov.hmcts.reform.docassembly.domain.DocAssemblyResponse;
 import uk.gov.hmcts.reform.docassembly.exception.DocumentGenerationFailedException;
 
 @Component
+@ConditionalOnProperty(prefix = "doc_assembly", name = "url")
 public class DocAssemblyClient {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final DocAssemblyApi docAssemblyApi;
