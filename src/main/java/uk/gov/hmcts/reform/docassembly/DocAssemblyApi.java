@@ -22,7 +22,7 @@ public interface DocAssemblyApi {
     )
     DocAssemblyResponse generateOrder(
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation,
-        @RequestHeader("ServiceAuthorisation") String serviceAuthorisation,
+        @RequestHeader("ServiceAuthorization") String serviceAuthorisation,
         DocAssemblyRequest request
     );
 }

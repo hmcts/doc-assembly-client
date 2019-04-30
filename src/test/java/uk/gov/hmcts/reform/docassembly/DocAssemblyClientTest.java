@@ -39,5 +39,4 @@ public class DocAssemblyClientTest {
             SERVICE_TOKEN,
             DocAssemblyRequest.builder().build());
     }
-
 }
