@@ -29,7 +29,8 @@ public class DocAssemblyClient {
                 serviceAuthorisation,
                 docAssemblyRequest);
         } catch (Exception e) {
-            logger.error("Error while trying to generate an order with docAssembly");
+            logger.error(
+                "Error while trying to generate an order with docAssembly, original exception: {}", e.getMessage());
             throw new DocumentGenerationFailedException(e);
         }
     }
