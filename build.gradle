@@ -21,8 +21,10 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
+def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
+
 group 'uk.gov.hmcts.reform'
-version '1.0.4'
+version buildNumber
 
 dependencyUpdates.resolutionStrategy = {
   componentSelection { rules ->
