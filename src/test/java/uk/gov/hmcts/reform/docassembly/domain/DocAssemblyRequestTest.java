@@ -22,4 +22,14 @@ public class DocAssemblyRequestTest {
         assertThat(docAssemblyRequest.getTemplateId(), is(encodedTemplateId));
     }
 
+    @Test
+    public void shouldCreateRequestWithFileName() {
+        String fileName = "fileName";
+        DocAssemblyRequest docAssemblyRequest = DocAssemblyRequest
+            .builder()
+            .outputFilename(fileName)
+            .build();
+        assertThat(docAssemblyRequest.getOutputFilename(), is(fileName));
+    }
+
 }

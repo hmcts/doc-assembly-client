@@ -18,6 +18,8 @@ public class DocAssemblyRequest {
 
     private FormPayload formPayload;
 
+    private String outputFilename;
+
     public static class DocAssemblyRequestBuilder {
         public DocAssemblyRequestBuilder templateId(String templateId) {
             this.templateId = Base64.getEncoder()
