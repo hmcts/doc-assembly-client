@@ -10,7 +10,7 @@ import uk.gov.hmcts.reform.docassembly.domain.DocAssemblyRequest;
 import uk.gov.hmcts.reform.docassembly.domain.DocAssemblyResponse;
 import uk.gov.hmcts.reform.docassembly.healthcheck.InternalHealth;
 
-@FeignClient(name = "doc-assembly-api", url = "${doc_assembly.url}")
+@FeignClient(name = "doc-assembly-api", primary = false, url = "${doc_assembly.url}")
 public interface DocAssemblyApi {
     @GetMapping("/health")
     InternalHealth health();
