@@ -1,25 +1,22 @@
 buildscript {
   repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+    mavenCentral()
+    mavenLocal()
+    maven { url 'https://jitpack.io' }
   }
 }
 
 plugins {
   id 'checkstyle'
-  id 'io.spring.dependency-management' version '1.0.5.RELEASE'
-  id 'org.springframework.boot' version '2.0.6.RELEASE'
-  id 'com.github.ben-manes.versions' version '0.20.0'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'org.springframework.boot' version '2.5.5'
+  id 'com.github.ben-manes.versions' version '0.30.0'
 }
 
 apply plugin: 'checkstyle'
 apply plugin: 'java-library'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'maven'
 apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
 
@@ -43,10 +40,11 @@ checkstyle {
   maxWarnings = 0
   toolVersion = '8.19'
   // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
-  configDir = new File(rootDir, 'config/checkstyle')
+  getConfigDirectory().set(new File(rootDir, 'config/checkstyle'))
 }
 
-sourceCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 compileJava {
   options.compilerArgs << '-parameters' << '-Xlint:deprecation'
@@ -57,14 +55,9 @@ compileTestJava {
 }
 
 repositories {
-  maven {
-    url "https://dl.bintray.com/hmcts/hmcts-maven"
-  }
-  maven {
-    url 'https://repo.spring.io/libs-milestone'
-  }
-  jcenter()
+  mavenCentral()
   mavenLocal()
+  maven { url 'https://jitpack.io' }
 }
 
 jar {
@@ -79,6 +72,7 @@ task printVersion {
   }
 }
 
+def gitRepo = "https://github.com/hmcts/doc-assembly-client"
 
 def pomConfig = {
   licenses {
@@ -131,36 +125,22 @@ publishing {
   }
 }
 
-bintray {
-  user = System.getenv('BINTRAY_USER')
-  key = System.getenv('BINTRAY_KEY')
-  publications = ['Main']
-  publish = true
-  pkg {
-    repo = 'hmcts-maven'
-    name = 'doc-assembly-client'
-    userOrg = 'hmcts'
-    licenses = ['MIT']
-    vcsUrl = 'https://github.com/hmcts/doc-assembly-client'
-    version {
-      name = project.version
-    }
-  }
-}
-
 ext {
   springCloudVersion = 'Finchley.RELEASE'
+  junitJupiterVersion = '5.8.1'
+  lombokVersion = '1.18.20'
 }
 
 dependencies {
   api group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
   api group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
   api group: 'io.github.openfeign', name: 'feign-jackson'
-  annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.6'
-  compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.6'
-  testCompile group: 'junit', name: 'junit', version: '4.12'
-  testCompile group: 'org.mockito', name: 'mockito-core', version: '2.23.0'
-
+  annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+  compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+  testImplementation group: 'junit', name: 'junit', version: '4.13'
+  testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.23.0'
+  testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitJupiterVersion
+  testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitJupiterVersion
 }
 
 dependencyManagement {
@@ -175,4 +155,8 @@ bootJar {
 
 jar {
   enabled = true
+}
+
+test {
+  useJUnitPlatform()
 }
