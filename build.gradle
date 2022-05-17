@@ -127,7 +127,7 @@ publishing {
 
 ext {
   springCloudVersion = 'Finchley.RELEASE'
-  junitJupiterVersion = '5.8.1'
+  junitJupiterVersion = '5.8.2'
   lombokVersion = '1.18.24'
 }
 
