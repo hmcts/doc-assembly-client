@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.Base64;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 
 public class DocAssemblyRequestTest {
@@ -19,7 +19,7 @@ public class DocAssemblyRequestTest {
             .build();
         String encodedTemplateId = Base64.getEncoder()
             .encodeToString(templateId.getBytes());
-        assertThat(docAssemblyRequest.getTemplateId(), is(encodedTemplateId));
+        assertEquals(docAssemblyRequest.getTemplateId(), is(encodedTemplateId));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class DocAssemblyRequestTest {
             .builder()
             .outputFilename(fileName)
             .build();
-        assertThat(docAssemblyRequest.getOutputFilename(), is(fileName));
+        assertEquals(docAssemblyRequest.getOutputFilename(), is(fileName));
     }
 
 }
