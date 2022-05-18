@@ -8,5 +8,9 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode
 public class DocAssemblyResponse {
+
     private String renditionOutputLocation;
+
+    private String hashToken;
+
 }
