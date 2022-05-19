@@ -110,9 +110,6 @@ publishing {
       from components.java
       artifact sourcesJar
       artifact javadocJar
-      groupId project.group
-      artifactId 'doc-assembly-client'
-      version project.version
 
       pom.withXml {
         def root = asNode()
@@ -150,10 +147,12 @@ dependencyManagement {
 }
 
 bootJar {
+  archiveClassifier = 'boot'
   enabled = false
 }
 
 jar {
+  archiveClassifier = ''
   enabled = true
 }
 
