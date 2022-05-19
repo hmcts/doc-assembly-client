@@ -106,17 +106,17 @@ artifacts {
 
 publishing {
   publications {
-    Main(MavenPublication) {
+    mavenJava(MavenPublication) {
+      artifact bootJar
       from components.java
-      artifact sourcesJar
-      artifact javadocJar
 
-      pom.withXml {
-        def root = asNode()
-        root.appendNode('description', 'Client library for communicating with doc assembly api')
-        root.appendNode('name', 'Doc assembly client')
-        root.appendNode('url', 'https://github.com/hmcts/doc-assembly-client')
-        root.children().last() + pomConfig
+      versionMapping {
+        usage('java-api') {
+          fromResolutionOf('runtimeClasspath')
+        }
+        usage('java-runtime') {
+          fromResolutionResult()
+        }
       }
     }
   }
