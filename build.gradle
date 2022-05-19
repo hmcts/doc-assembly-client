@@ -7,16 +7,13 @@ buildscript {
 }
 
 plugins {
+  id 'maven-publish'
+  id 'java-library'
   id 'checkstyle'
-  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-  id 'org.springframework.boot' version '2.5.5'
-  id 'com.github.ben-manes.versions' version '0.30.0'
+  id 'io.spring.dependency-management' version '1.0.5.RELEASE'
+  id 'org.springframework.boot' version '2.0.6.RELEASE'
+  id 'com.github.ben-manes.versions' version '0.20.0'
 }
-
-apply plugin: 'checkstyle'
-apply plugin: 'java-library'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'maven-publish'
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
 
