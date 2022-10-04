@@ -30,7 +30,10 @@ public class DocAssemblyClient {
                 docAssemblyRequest);
         } catch (Exception e) {
             logger.error(
-                "Error while trying to generate an order with docAssembly, original exception: {}", e.getMessage());
+                "Error while trying to generate an order with docAssembly,docAssemblyRequest: {}, exception: {}",
+                docAssemblyRequest.toString(),
+                e
+            );
             throw new DocumentGenerationFailedException(e);
         }
     }

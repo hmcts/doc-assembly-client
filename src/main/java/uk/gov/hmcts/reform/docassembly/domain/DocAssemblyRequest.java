@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.docassembly.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
+import lombok.ToString;
 import lombok.Value;
 
 import java.util.Base64;
@@ -10,6 +11,7 @@ import java.util.Base64;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 @Value
+@ToString
 public class DocAssemblyRequest {
     private String templateId;
 
