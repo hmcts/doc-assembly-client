@@ -20,6 +20,12 @@ def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?:
 group 'uk.gov.hmcts.reform'
 version buildNumber
 
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+
 dependencyUpdates.resolutionStrategy = {
   componentSelection { rules ->
     rules.all { ComponentSelection selection ->
@@ -39,8 +45,6 @@ checkstyle {
   // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
   getConfigDirectory().set(new File(rootDir, 'config/checkstyle'))
 }
-
-sourceCompatibility = 1.8
 
 compileJava {
   options.compilerArgs << '-parameters' << '-Xlint:deprecation'
@@ -153,6 +157,11 @@ bootJar {
 jar {
   archiveClassifier = ''
   enabled = true
+}
+
+// https://github.com/gradle/gradle/issues/16791
+tasks.withType(JavaExec).configureEach {
+  javaLauncher.set(javaToolchains.launcherFor(java.toolchain))
 }
 
 test {
