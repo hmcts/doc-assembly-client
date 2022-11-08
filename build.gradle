@@ -20,6 +20,12 @@ def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?:
 group 'uk.gov.hmcts.reform'
 version buildNumber
 
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+
 dependencyUpdates.resolutionStrategy = {
   componentSelection { rules ->
     rules.all { ComponentSelection selection ->
@@ -35,12 +41,10 @@ dependencyUpdates.resolutionStrategy = {
 
 checkstyle {
   maxWarnings = 0
-  toolVersion = '8.19'
+  toolVersion = '9.3'
   // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
   getConfigDirectory().set(new File(rootDir, 'config/checkstyle'))
 }
-
-sourceCompatibility = 1.8
 
 compileJava {
   options.compilerArgs << '-parameters' << '-Xlint:deprecation'
@@ -133,8 +137,8 @@ dependencies {
   api group: 'io.github.openfeign', name: 'feign-jackson'
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
   compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-  testImplementation group: 'junit', name: 'junit', version: '4.13'
   testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.23.0'
+  testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.23.0'
   testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitJupiterVersion
   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitJupiterVersion
 }
