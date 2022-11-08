@@ -9,7 +9,6 @@ import uk.gov.hmcts.reform.docassembly.domain.DocAssemblyRequest;
 import uk.gov.hmcts.reform.docassembly.exception.DocumentGenerationFailedException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -44,8 +43,4 @@ public class DocAssemblyClientTest {
         });
     }
 
-    @Test
-    public void failingTest() {
-        fail("This should fail");
-    }
 }
