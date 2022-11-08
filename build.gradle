@@ -10,7 +10,7 @@ plugins {
   id 'maven-publish'
   id 'java-library'
   id 'checkstyle'
-  id 'io.spring.dependency-management' version '1.0.5.RELEASE'
+  id 'io.spring.dependency-management' version '1.1.0'
   id 'org.springframework.boot' version '2.0.6.RELEASE'
   id 'com.github.ben-manes.versions' version '0.20.0'
 }
