@@ -137,8 +137,8 @@ dependencies {
   api group: 'io.github.openfeign', name: 'feign-jackson'
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
   compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-  testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.28.2'
-  testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.28.2'
+  testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.8.1'
+  testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '4.8.1'
   testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitJupiterVersion
   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitJupiterVersion
 }
