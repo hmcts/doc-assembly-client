@@ -1,13 +1,9 @@
 package uk.gov.hmcts.reform.docassembly.domain;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Base64;
-
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class DocAssemblyRequestTest {
 
@@ -20,7 +16,7 @@ public class DocAssemblyRequestTest {
             .build();
         String encodedTemplateId = Base64.getEncoder()
             .encodeToString(templateId.getBytes());
-        assertEquals(docAssemblyRequest.getTemplateId(), is(encodedTemplateId));
+        Assertions.assertEquals(docAssemblyRequest.getTemplateId(), encodedTemplateId);
     }
 
     @Test
@@ -30,7 +26,7 @@ public class DocAssemblyRequestTest {
             .builder()
             .outputFilename(fileName)
             .build();
-        assertEquals(docAssemblyRequest.getOutputFilename(), is(fileName));
+        Assertions.assertEquals(docAssemblyRequest.getOutputFilename(), fileName);
     }
 
     @Test
@@ -40,7 +36,7 @@ public class DocAssemblyRequestTest {
             .builder()
             .secureDocStoreEnabled(true)
             .build();
-        assertTrue(docAssemblyRequest.isSecureDocStoreEnabled());
+        Assertions.assertTrue(docAssemblyRequest.isSecureDocStoreEnabled());
     }
 
     @Test
@@ -50,8 +46,8 @@ public class DocAssemblyRequestTest {
             .builder()
             .caseTypeId(caseTypeId)
             .build();
-        assertEquals(docAssemblyRequest.getCaseTypeId(), caseTypeId);
-        assertFalse(docAssemblyRequest.isSecureDocStoreEnabled());
+        Assertions.assertEquals(docAssemblyRequest.getCaseTypeId(), caseTypeId);
+        Assertions.assertFalse(docAssemblyRequest.isSecureDocStoreEnabled());
     }
 
     @Test
@@ -59,10 +55,10 @@ public class DocAssemblyRequestTest {
         String jurisdictionId = "TEST";
         DocAssemblyRequest docAssemblyRequest = DocAssemblyRequest
             .builder()
-            .caseTypeId(jurisdictionId)
+            .jurisdictionId(jurisdictionId)
             .build();
-        assertEquals(docAssemblyRequest.getJurisdictionId(), jurisdictionId);
-        assertFalse(docAssemblyRequest.isSecureDocStoreEnabled());
+        Assertions.assertEquals(docAssemblyRequest.getJurisdictionId(), jurisdictionId);
+        Assertions.assertFalse(docAssemblyRequest.isSecureDocStoreEnabled());
     }
 
 }

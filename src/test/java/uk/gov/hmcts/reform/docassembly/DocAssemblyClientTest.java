@@ -1,19 +1,20 @@
 package uk.gov.hmcts.reform.docassembly;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.docassembly.domain.DocAssemblyRequest;
 import uk.gov.hmcts.reform.docassembly.exception.DocumentGenerationFailedException;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class DocAssemblyClientTest {
 
     private static final String BEARER_TOKEN = "Bearer let me in";
@@ -23,22 +24,24 @@ public class DocAssemblyClientTest {
 
     private DocAssemblyClient docAssemblyClient;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         docAssemblyClient = new DocAssemblyClient(docAssemblyApi);
     }
 
-    @Test(expected = DocumentGenerationFailedException.class)
+    @Test()
     public void shouldThrowIfCallToDocAssemblyFails() {
         when(docAssemblyApi.generateOrder(
             eq(BEARER_TOKEN),
             eq(SERVICE_TOKEN),
             any(DocAssemblyRequest.class))).thenThrow(RuntimeException.class);
 
-        docAssemblyClient.generateOrder(
-            BEARER_TOKEN,
-            SERVICE_TOKEN,
-            DocAssemblyRequest.builder().build());
+        assertThrows(DocumentGenerationFailedException.class, () -> {
+            docAssemblyClient.generateOrder(
+                BEARER_TOKEN,
+                SERVICE_TOKEN,
+                DocAssemblyRequest.builder().build());
+        });
     }
 
     @Test
