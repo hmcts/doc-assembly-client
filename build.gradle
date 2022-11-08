@@ -41,7 +41,7 @@ dependencyUpdates.resolutionStrategy = {
 
 checkstyle {
   maxWarnings = 0
-  toolVersion = '8.19'
+  toolVersion = '9.3'
   // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
   getConfigDirectory().set(new File(rootDir, 'config/checkstyle'))
 }
@@ -137,7 +137,6 @@ dependencies {
   api group: 'io.github.openfeign', name: 'feign-jackson'
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
   compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-  testImplementation group: 'junit', name: 'junit', version: '4.13'
   testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.23.0'
   testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitJupiterVersion
   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitJupiterVersion
