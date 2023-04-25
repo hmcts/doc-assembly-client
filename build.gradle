@@ -139,6 +139,7 @@ ext {
   springCloudVersion = '2022.0.1'
   junitJupiterVersion = '5.9.2'
   lombokVersion = '1.18.26'
+  mockitoVersion = '5.3.1'
 }
 
 dependencies {
@@ -147,8 +148,8 @@ dependencies {
   api group: 'io.github.openfeign', name: 'feign-jackson'
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
   compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-  testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.3.0'
-  testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.3.0'
+  testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
+  testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: mockitoVersion
   testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitJupiterVersion
   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitJupiterVersion
 }
