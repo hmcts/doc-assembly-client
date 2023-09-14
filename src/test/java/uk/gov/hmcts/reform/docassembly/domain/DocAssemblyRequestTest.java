@@ -47,7 +47,8 @@ public class DocAssemblyRequestTest {
             .secureDocStoreEnabled(true)
             .caseTypeId(caseTypeId)
             .build();
-        Assertions.assertThrows(ValidationException.class, () -> {docAssemblyRequest.getCaseTypeId();});
+        Assertions.assertThrows(ValidationException.class, () -> {
+            docAssemblyRequest.getCaseTypeId(); });
     }
 
     @Test
@@ -58,7 +59,8 @@ public class DocAssemblyRequestTest {
             .secureDocStoreEnabled(true)
             .caseTypeId(caseTypeId)
             .build();
-        Assertions.assertThrows(ValidationException.class, () -> {docAssemblyRequest.getCaseTypeId();});
+        Assertions.assertThrows(ValidationException.class, () -> {
+            docAssemblyRequest.getCaseTypeId(); });
     }
 
     @Test
@@ -69,7 +71,8 @@ public class DocAssemblyRequestTest {
             .secureDocStoreEnabled(true)
             .jurisdictionId(jurisdictionId)
             .build();
-        Assertions.assertThrows(ValidationException.class, () -> {docAssemblyRequest.getCaseTypeId();});
+        Assertions.assertThrows(ValidationException.class, () -> {
+            docAssemblyRequest.getJurisdictionId(); });
     }
 
     @Test
@@ -80,7 +83,8 @@ public class DocAssemblyRequestTest {
             .secureDocStoreEnabled(true)
             .jurisdictionId(jurisdictionId)
             .build();
-        Assertions.assertThrows(ValidationException.class, () -> {docAssemblyRequest.getCaseTypeId();});
+        Assertions.assertThrows(ValidationException.class, () -> {
+            docAssemblyRequest.getJurisdictionId(); });
     }
 
     @Test

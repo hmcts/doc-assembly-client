@@ -34,8 +34,8 @@ public class DocAssemblyRequest {
     }
 
     public String getCaseTypeId() {
-        if(secureDocStoreEnabled){
-            if(caseTypeId != null && !caseTypeId.trim().isEmpty()){
+        if (secureDocStoreEnabled) {
+            if (caseTypeId != null && !caseTypeId.trim().isEmpty()) {
                 return caseTypeId;
             }
             throw new ValidationException("CaseTypeID value is incorrect");
@@ -44,8 +44,8 @@ public class DocAssemblyRequest {
     }
 
     public String getJurisdictionId() {
-        if(secureDocStoreEnabled) {
-            if(jurisdictionId != null && !jurisdictionId.trim().isEmpty()){
+        if (secureDocStoreEnabled) {
+            if (jurisdictionId != null && !jurisdictionId.trim().isEmpty()) {
                 return jurisdictionId;
             }
             throw new ValidationException("CaseTypeID value is incorrect");
