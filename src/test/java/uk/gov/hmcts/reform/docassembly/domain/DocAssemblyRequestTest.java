@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.docassembly.domain;
 
+import jakarta.validation.ValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -31,12 +32,55 @@ public class DocAssemblyRequestTest {
 
     @Test
     public void shouldCreateRequestWithSecureDocStoreEnabled() {
-
         DocAssemblyRequest docAssemblyRequest = DocAssemblyRequest
             .builder()
             .secureDocStoreEnabled(true)
             .build();
         Assertions.assertTrue(docAssemblyRequest.isSecureDocStoreEnabled());
+    }
+
+    @Test
+    public void shouldNotCreateRequestWithBlankCaseTypeId() {
+        String caseTypeId = " ";
+        DocAssemblyRequest docAssemblyRequest = DocAssemblyRequest
+            .builder()
+            .secureDocStoreEnabled(true)
+            .caseTypeId(caseTypeId)
+            .build();
+        Assertions.assertThrows(ValidationException.class, () -> {docAssemblyRequest.getCaseTypeId();});
+    }
+
+    @Test
+    public void shouldNotCreateRequestWithNullCaseTypeId() {
+        String caseTypeId = null;
+        DocAssemblyRequest docAssemblyRequest = DocAssemblyRequest
+            .builder()
+            .secureDocStoreEnabled(true)
+            .caseTypeId(caseTypeId)
+            .build();
+        Assertions.assertThrows(ValidationException.class, () -> {docAssemblyRequest.getCaseTypeId();});
+    }
+
+    @Test
+    public void shouldNotCreateRequestWithBlankjurisdictionId() {
+        String jurisdictionId = " ";
+        DocAssemblyRequest docAssemblyRequest = DocAssemblyRequest
+            .builder()
+            .secureDocStoreEnabled(true)
+            .jurisdictionId(jurisdictionId)
+            .build();
+        Assertions.assertThrows(ValidationException.class, () -> {docAssemblyRequest.getCaseTypeId();});
+    }
+
+    @Test
+    public void shouldNotCreateRequestWithNulljurisdictionId() {
+        String jurisdictionId = null;
+        DocAssemblyRequest docAssemblyRequest = DocAssemblyRequest
+            .builder()
+            .secureDocStoreEnabled(true)
+            .jurisdictionId(jurisdictionId)
+            .build();
+        Assertions.assertThrows(ValidationException.class, () -> {docAssemblyRequest.getCaseTypeId();});
     }
 
     @Test
