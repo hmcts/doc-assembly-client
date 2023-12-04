@@ -139,7 +139,7 @@ ext {
   springCloudVersion = '2022.0.4'
   junitJupiterVersion = '5.10.1'
   lombokVersion = '1.18.30'
-  mockitoVersion = '5.7.0'
+  mockitoVersion = '5.8.0'
 }
 
 dependencies {
