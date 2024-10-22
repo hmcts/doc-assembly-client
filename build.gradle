@@ -137,7 +137,7 @@ publishing {
 
 ext {
   springCloudVersion = '2023.0.3'
-  junitJupiterVersion = '5.11.2'
+  junitJupiterVersion = '5.11.3'
   lombokVersion = '1.18.34'
   mockitoVersion = '5.14.2'
 }
@@ -159,7 +159,7 @@ dependencyManagement {
     mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
   }
   dependencies {
-    dependencySet(group: 'org.junit.platform', version: '1.11.2') {
+    dependencySet(group: 'org.junit.platform', version: '1.11.3') {
         entry 'junit-platform-commons'
     }
   }
