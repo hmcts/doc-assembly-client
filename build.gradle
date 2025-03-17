@@ -137,7 +137,7 @@ publishing {
 
 ext {
   springCloudVersion = '2024.0.0'
-  junitJupiterVersion = '5.12.0'
+  junitJupiterVersion = '5.12.1'
   lombokVersion = '1.18.36'
   mockitoVersion = '5.16.0'
 }
@@ -151,7 +151,7 @@ dependencies {
   testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
   testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: mockitoVersion
   testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junitJupiterVersion
-  testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.12.0'
+  testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.12.1'
   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junitJupiterVersion
 }
 
@@ -160,7 +160,7 @@ dependencyManagement {
     mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
   }
   dependencies {
-    dependencySet(group: 'org.junit.platform', version: '1.12.0') {
+    dependencySet(group: 'org.junit.platform', version: '1.12.1') {
         entry 'junit-platform-commons'
         entry 'junit-platform-engine'
     }
