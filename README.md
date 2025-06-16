@@ -9,7 +9,7 @@ The two main responsibilities are:
 
 ### Prerequisites
 
-- [JDK 8](https://www.oracle.com/java)
+- [Java 21](https://www.oracle.com/java)
 - [Docker](https://www.docker.com)
 
 ## Usage
@@ -54,7 +54,7 @@ To run all checks (including unit tests) please execute the following command:
 We use [SemVer](http://semver.org/) for versioning.
 For the versions available, see the tags on this repository.
 
-To release a new version add a tag with the version number and push this up to the origin repository. This will then 
+To release a new version add a tag with the version number and push this up to the origin repository. This will then
 build and publish the release to maven.
 
 ## License
