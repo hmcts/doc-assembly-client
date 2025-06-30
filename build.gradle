@@ -135,7 +135,7 @@ publishing {
 
 ext {
   springCloudVersion = '2025.0.0'
-  junitJupiterVersion = '5.13.1'
+  junitJupiterVersion = '5.13.2'
   lombokVersion = '1.18.38'
   mockitoVersion = '5.18.0'
 }
