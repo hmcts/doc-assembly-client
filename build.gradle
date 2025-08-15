@@ -9,25 +9,22 @@ plugins {
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
 
-group 'com.github.hmcts'
-version buildNumber
+group = 'com.github.hmcts'
+version = buildNumber
 
 java {
   toolchain {
     languageVersion = JavaLanguageVersion.of(21)
   }
 }
-
-dependencyUpdates.resolutionStrategy = {
-  componentSelection { rules ->
-    rules.all { ComponentSelection selection ->
-      boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
-        selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
-      }
-      if (rejected) {
-        selection.reject('Release candidate')
-      }
-    }
+tasks.named("dependencyUpdates").configure {
+  def isNonStable = { String version ->
+    def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { qualifier -> version.toUpperCase().contains(qualifier) }
+    def regex = /^[0-9,.v-]+$/
+    return !stableKeyword && !(version ==~ regex)
+  }
+  rejectVersionIf {
+    isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)
   }
 }
 
@@ -35,7 +32,7 @@ checkstyle {
   maxWarnings = 0
   toolVersion = '11.0.0'
   // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
-  getConfigDirectory().set(new File(rootDir, 'config/checkstyle'))
+  configDirectory.set(rootProject.layout.projectDirectory.dir('config/checkstyle'))
 }
 
 compileJava {
@@ -52,46 +49,25 @@ jar {
   }
 }
 
-task printVersion {
+tasks.register('printVersion') {
   doLast {
-    print project.version
+    println project.version
   }
 }
 
-def gitRepo = "https://github.com/hmcts/doc-assembly-client"
-
-def pomConfig = {
-  licenses {
-    license {
-      name "MIT License"
-      url "http://www.opensource.org/licenses/mit-license.php"
-      distribution "repo"
-    }
-  }
-
-  scm {
-    url "https://github.com/hmcts/doc-assembly-client"
-  }
-}
-
-
-task sourcesJar(type: Jar, dependsOn: classes) {
+tasks.register('sourcesJar', Jar) {
+  dependsOn classes
   archiveClassifier = 'sources'
   from sourceSets.main.allSource
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
+tasks.register('javadocJar', Jar) {
+  dependsOn javadoc
   archiveClassifier = 'javadoc'
   from javadoc.destinationDir
 }
 
-artifacts {
-  archives sourcesJar
-  archives javadocJar
-}
-
 publishing {
-
   repositories {
     maven {
       name = "AzureArtifacts"
@@ -104,30 +80,28 @@ publishing {
   }
 
   publications {
-    Main(MavenPublication) {
-
-      versionMapping {
-        usage('java-api') {
-          fromResolutionOf('runtimeClasspath')
-        }
-        usage('java-runtime') {
-          fromResolutionResult()
-        }
-      }
-
+    create('Main', MavenPublication) {
       from components.java
       artifact sourcesJar
       artifact javadocJar
-      groupId project.group
-      artifactId 'doc-assembly-client'
-      version project.version
 
-      pom.withXml {
-        def root = asNode()
-        root.appendNode('description', 'Client library for communicating with doc assembly api')
-        root.appendNode('name', 'Doc assembly client')
-        root.appendNode('url', 'https://github.com/hmcts/doc-assembly-client')
-        root.children().last() + pomConfig
+      artifactId = 'doc-assembly-client'
+
+      pom {
+        name = 'Doc assembly client'
+        description = 'Client library for communicating with doc assembly api'
+        url = 'https://github.com/hmcts/doc-assembly-client'
+
+        licenses {
+          license {
+            name = "MIT License"
+            url = "http://www.opensource.org/licenses/mit-license.php"
+            distribution = "repo"
+          }
+        }
+        scm {
+          url = "https://github.com/hmcts/doc-assembly-client"
+        }
       }
     }
   }
