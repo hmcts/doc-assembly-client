@@ -19,7 +19,7 @@ public class DocAssemblyHealthIndicator implements HealthIndicator {
     public Health health() {
         try {
             InternalHealth internalHealth = this.docAssemblyApi.health();
-            return new Health.Builder(internalHealth.getStatus()).build();
+            return new Health.Builder(internalHealth.status()).build();
         } catch (Exception ex) {
             LOGGER.error("Error on doc assembly client healthcheck", ex);
             return Health.down(ex).build();
