@@ -30,7 +30,7 @@ tasks.named("dependencyUpdates").configure {
 
 checkstyle {
   maxWarnings = 0
-  toolVersion = '12.1.2'
+  toolVersion = '12.2.0'
   // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
   configDirectory.set(rootProject.layout.projectDirectory.dir('config/checkstyle'))
 }
