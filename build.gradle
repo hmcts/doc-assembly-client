@@ -108,14 +108,14 @@ publishing {
 }
 
 ext {
-  springCloudVersion = '2025.1.1'
+  springCloudVersion = '2025.1.2'
   junitJupiterVersion = '6.1.0'
   lombokVersion = '1.18.46'
   mockitoVersion = '5.23.0'
 }
 
 dependencies {
-  api group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '5.0.1'
+  api group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '5.0.2'
   api group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
   api group: 'io.github.openfeign', name: 'feign-jackson', version: '13.12'
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
